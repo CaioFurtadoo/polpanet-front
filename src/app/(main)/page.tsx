@@ -209,7 +209,10 @@ const fetchOfertas = async () => {
       <Link className="underline" href="user">Ver perfil</Link>
       <Link className="underline" href="config">Configurações</Link>
     </div>
-    <p className="max-lg:hidden text-preto-forelight text-[12px] flex justify-center items-center">Elpídio Lunardelli © 2025</p>
+    <div className="max-lg:hidden text-preto-forelight text-[12px] flex flex-col justify-center items-center">
+      <p>Elpídio Lunardelli © 2025</p>
+      <p>Dev Caio Furtado</p>
+    </div>
   </div>
   </section>
 

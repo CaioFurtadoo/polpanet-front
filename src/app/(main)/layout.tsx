@@ -104,7 +104,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
             >
               Ver Perfil
             </Link>
-                        <Link 
+            <Link 
               className="font-bold" 
               href="/config" 
               onClick={() => setMenuOpen(false)}
@@ -123,6 +123,10 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
                 <Image src={logout} alt="logout icon" />
                 Sair
               </button>
+            </div>
+            <div className="min-lg:hidden text-preto-forelight text-[12px] flex justify-between items-start">
+              <p>Elpídio Lunardelli © 2025</p>
+              <p>Dev Caio Furtado</p>
             </div>
           </div>
         )}
