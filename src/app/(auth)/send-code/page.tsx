@@ -48,7 +48,7 @@ export default function SendCode() {
       return;
     }
     try {
-      const res = await fetch("http://72.60.49.135/api/password/forgot", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/password/forgot`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),

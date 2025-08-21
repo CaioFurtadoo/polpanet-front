@@ -76,7 +76,7 @@ const fetchOfertas = async () => {
 
   try {
     const response = await fetch(
-      `http://72.60.49.135/api/oferta/activedate?${queryParams.toString()}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/oferta/activedate?${queryParams.toString()}`,
       {
         method: "GET",
         headers: {

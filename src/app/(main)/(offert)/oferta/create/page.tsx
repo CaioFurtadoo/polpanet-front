@@ -167,7 +167,7 @@ const frutaOptions = Object.entries(frutaMap).map(([key, value]) => ({
 
   try {
     const token = localStorage.getItem("token") || "";
-    const response = await fetch("http://72.60.49.135/api/oferta", {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/oferta`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

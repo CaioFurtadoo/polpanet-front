@@ -68,7 +68,7 @@ const [deleteMessage, setDeleteMessage] = useState<{ type: 'success' | 'error'; 
   useEffect(() => {
     const token = localStorage.getItem("token") || "";
 
-    fetch("http://72.60.49.135/api/user", {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user`, {
       headers: {
         Authorization: `Bearer ${token}`,
         Accept: "application/json"
@@ -138,7 +138,7 @@ const handleSubmit = async () => {
 
   try {
     const token = localStorage.getItem("token") || "";
-    const res = await fetch("http://72.60.49.135/api/user", {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -180,7 +180,7 @@ const handleSubmitSenha = async () => {
             return;
         }
 
-        const response = await fetch('http://72.60.49.135/api/user/change-password', {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user/change-password`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -216,7 +216,7 @@ const handleDeleteAccount = async () => {
       return;
     }
 
-    const response = await fetch("http://72.60.49.135/api/user", {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,

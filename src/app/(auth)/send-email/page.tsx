@@ -43,7 +43,7 @@ export default function SendEmail() {
     }
 
     try {
-      const response = await fetch('http://72.60.49.135/api/password/forgot', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/password/forgot`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -67,7 +67,7 @@ export default function PerfilDetalhe() {
       if (!token || !userid) return;
 
       try {
-        const res = await fetch(`http://72.60.49.135/api/user/${userid}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user/${userid}`, {
           headers: {
             Authorization: `Bearer ${token}`,
             Accept: 'application/json',

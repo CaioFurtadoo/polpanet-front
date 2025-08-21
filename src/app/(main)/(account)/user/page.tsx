@@ -69,7 +69,7 @@ export default function PerfilLogado() {
       if (!token) return;
 
       try {
-        const userRes = await fetch('http://72.60.49.135/api/user', {
+        const userRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -77,7 +77,7 @@ export default function PerfilLogado() {
         const userData: User = await userRes.json();
         setUser(userData);
 
-        const ofertasRes = await fetch('http://72.60.49.135/api/oferta', {
+        const ofertasRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/oferta`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -111,7 +111,7 @@ export default function PerfilLogado() {
     if (!token) return;
 
     try {
-      const res = await fetch(`http://72.60.49.135/api/oferta/${ofertaSelecionada.id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/oferta/${ofertaSelecionada.id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` },
       });
