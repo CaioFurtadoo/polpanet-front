@@ -121,7 +121,7 @@ const frutaOptions = Object.entries(frutaMap).map(([key, value]) => ({
   useEffect(() => {
     async function fetchOferta() {
       const token = localStorage.getItem("token") || "";
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/oferta/${id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL === undefined ? "https://api.polpanet.com" : ""}/api/oferta/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -194,7 +194,7 @@ const frutaOptions = Object.entries(frutaMap).map(([key, value]) => ({
     benzoatoDeSodio,
     sorbatoDePotassio,
     metabissulfitoDeSodio,
-    corante: possuiCorante ? corante : "",
+    corante: possuiCorante ? "Sim" : "Não",
     embalagem: embalagemMap[embalagem] || 0,
     initDate: dataInicio,
     finalDate: dataFim,
@@ -205,7 +205,7 @@ const frutaOptions = Object.entries(frutaMap).map(([key, value]) => ({
 
   try {
     const token = localStorage.getItem("token") || "";
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/oferta/${id}`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL === undefined ? "https://api.polpanet.com" : ""}/api/oferta/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -307,26 +307,6 @@ const frutaOptions = Object.entries(frutaMap).map(([key, value]) => ({
             </div>
         </div>
 
-        {tipoProduto === "Polpa" && (
-          <div className="flex flex-col gap-3">
-            <CustomCheckbox
-              label="Possui corante?"
-              checked={possuiCorante}
-              onChange={() => setPossuiCorante((prev) => !prev)}
-            />
-            {possuiCorante && (
-              <GeneralInput
-                placeholder="Digite o corante"
-                labelText="Corante"
-                forLabel="corante"
-                inputType="text"
-                value={corante}
-                onChange={setCorante}
-              />
-            )}
-          </div>
-        )}
-
         {tipoOferta === "Venda" && (
           <GeneralInput
             placeholder="Digite o preço da oferta"
@@ -390,6 +370,11 @@ const frutaOptions = Object.entries(frutaMap).map(([key, value]) => ({
 
         {tipoProduto === "Polpa" && (
           <div className="flex flex-wrap gap-3">
+            <CustomCheckbox
+              label="Corante"
+              checked={possuiCorante}
+              onChange={() => setPossuiCorante((prev) => !prev)}
+            />
             <CustomCheckbox
               label="Semente"
               checked={semente}

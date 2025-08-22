@@ -76,7 +76,7 @@ const fetchOfertas = async () => {
 
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/oferta/activedate?${queryParams.toString()}`,
+      `${process.env.NEXT_PUBLIC_API_URL === undefined ? "https://api.polpanet.com" : ""}/api/oferta/activedate?${queryParams.toString()}`,
       {
         method: "GET",
         headers: {
@@ -217,56 +217,55 @@ const fetchOfertas = async () => {
   </section>
 
 
-<section className="flex flex-1 flex-col gap-4 min-w-0">
-  <div className="flex lg:hidden justify-between items-center">
-    <h1 className="font-bold text-[36px] text-preto-forelight">Ofertas</h1>
-    <button className="flex items-center gap-2 px-2 py-1 bg-white border border-cinza-forelight rounded-lg" onClick={() => setShowFilter(!showFilter)}><Image src={filterIcon} alt="filter icon"></Image>Filtros</button>
-  </div>
-  <div className="flex gap-3 items-center">
-    <h1 className="max-lg:hidden font-bold text-[36px] text-preto-forelight">Ofertas</h1>
-    <div className="border-b border-cinza-forelight flex-1"></div>
-    <OrdenacaoSelect value={ordenacao} onChange={setOrdenacao} />
-  </div>
-
-  <div
-    className="overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-azul scrollbar-track-cinza-forelight"
-    style={{ maxHeight: "calc(100vh - 250px)", minWidth: 0 }}
-  >
-    <div className="flex flex-col gap-4">
-      {loading ? (
-        <div className="flex justify-center items-center py-64">
-          <div className="w-8 h-8 border-4 border-azul border-t-transparent rounded-full animate-spin" />
-        </div>
-      ) : ofertas.length > 0 ? (
-        ofertas.map((oferta) => (
-          <OfertCard
-            key={oferta.id}
-            id={oferta.id}
-            userId={oferta.userId}
-            price={oferta.price}
-            finalDate={new Date(oferta.finalDate).toLocaleDateString("pt-BR", {
-              day: "2-digit",
-              month: "2-digit",
-            })}
-            ofertType={oferta.ofertaType}
-            productType={oferta.productType}
-            fruta={frutasMap[oferta.fruta] ?? "Desconhecida"}
-            title={oferta.title}
-            companyName={oferta.companyName}
-            startDay={calcularDiasPassados(oferta.initDate)}
-            description={oferta.description}
-            localidade={oferta.localidade}
-            quantity={oferta.quantity}
-          />
-        ))
-      ) : (
-        <p className="text-center text-cinza-forelight text-sm">Nenhuma oferta encontrada.</p>
-      )}
+  <section className="flex flex-1 flex-col gap-4 min-w-0">
+    <div className="flex lg:hidden justify-between items-center">
+      <h1 className="font-bold text-[36px] text-preto-forelight">Ofertas</h1>
+      <button className="flex items-center gap-2 px-2 py-1 bg-white border border-cinza-forelight rounded-lg" onClick={() => setShowFilter(!showFilter)}><Image src={filterIcon} alt="filter icon"></Image>Filtros</button>
+    </div>
+    <div className="flex gap-3 items-center">
+      <h1 className="max-lg:hidden font-bold text-[36px] text-preto-forelight">Ofertas</h1>
+      <div className="border-b border-cinza-forelight flex-1"></div>
+      <OrdenacaoSelect value={ordenacao} onChange={setOrdenacao} />
     </div>
 
-  </div>
-</section>
+    <div
+      className="overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-azul scrollbar-track-cinza-forelight"
+      style={{ maxHeight: "calc(100vh - 250px)", minWidth: 0 }}
+    >
+      <div className="flex flex-col gap-4">
+        {loading ? (
+          <div className="flex justify-center items-center py-64">
+            <div className="w-8 h-8 border-4 border-azul border-t-transparent rounded-full animate-spin" />
+          </div>
+        ) : ofertas.length > 0 ? (
+          ofertas.map((oferta) => (
+            <OfertCard
+              key={oferta.id}
+              id={oferta.id}
+              userId={oferta.userId}
+              price={oferta.price}
+              finalDate={new Date(oferta.finalDate).toLocaleDateString("pt-BR", {
+                day: "2-digit",
+                month: "2-digit",
+              })}
+              ofertType={oferta.ofertaType}
+              productType={oferta.productType}
+              fruta={frutasMap[oferta.fruta] ?? "Desconhecida"}
+              title={oferta.title}
+              companyName={oferta.companyName}
+              startDay={calcularDiasPassados(oferta.initDate)}
+              description={oferta.description}
+              localidade={oferta.localidade}
+              quantity={oferta.quantity}
+            />
+          ))
+        ) : (
+          <p className="text-center text-cinza-forelight text-sm">Nenhuma oferta encontrada.</p>
+        )}
+      </div>
 
     </div>
+  </section>
+  </div>
   );
 }

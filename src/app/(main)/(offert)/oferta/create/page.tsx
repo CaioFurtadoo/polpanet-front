@@ -18,7 +18,6 @@ export default function Create() {
   const [tipoOferta, setTipoOferta] = useState('');
   const [tipoProduto, setTipoProduto] = useState('');
   const [possuiCorante, setPossuiCorante] = useState(false);
-  const [corante, setCorante] = useState('');
   const [embalagem, setEmbalagem] = useState('');
   const [dataInicio, setDataInicio] = useState('');
   const [dataFim, setDataFim] = useState('');
@@ -156,7 +155,7 @@ const frutaOptions = Object.entries(frutaMap).map(([key, value]) => ({
     benzoatoDeSodio,
     sorbatoDePotassio,
     metabissulfitoDeSodio,
-    corante: possuiCorante ? corante : "",
+    corante: possuiCorante ? "Sim" : "Não",
     embalagem: embalagemMap[embalagem] || 0,
     initDate: dataInicio,
     finalDate: dataFim,
@@ -167,7 +166,7 @@ const frutaOptions = Object.entries(frutaMap).map(([key, value]) => ({
 
   try {
     const token = localStorage.getItem("token") || "";
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/oferta`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL === undefined ? "https://api.polpanet.com" : ""}/api/oferta`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -267,26 +266,6 @@ const frutaOptions = Object.entries(frutaMap).map(([key, value]) => ({
             </div>
         </div>
 
-        {tipoProduto === "Polpa" && (
-          <div className="flex flex-col gap-3">
-            <CustomCheckbox
-              label="Possui corante?"
-              checked={possuiCorante}
-              onChange={() => setPossuiCorante((prev) => !prev)}
-            />
-            {possuiCorante && (
-              <GeneralInput
-                placeholder="Digite o corante"
-                labelText="Corante"
-                forLabel="corante"
-                inputType="text"
-                value={corante}
-                onChange={setCorante}
-              />
-            )}
-          </div>
-        )}
-
         {tipoOferta === "Venda" && (
           <GeneralInput
             placeholder="Digite o preço da oferta por quilograma"
@@ -347,6 +326,11 @@ const frutaOptions = Object.entries(frutaMap).map(([key, value]) => ({
         {tipoProduto === "Polpa" && (
           <div className="flex flex-wrap gap-3">
             <CustomCheckbox
+              label="Corante"
+              checked={possuiCorante}
+              onChange={() => setPossuiCorante((prev) => !prev)}
+            />
+            <CustomCheckbox
               label="Semente"
               checked={semente}
               onChange={() => setSemente((prev) => !prev)}
@@ -373,6 +357,17 @@ const frutaOptions = Object.entries(frutaMap).map(([key, value]) => ({
             />
           </div>
         )}
+
+        {/* {possuiCorante && tipoProduto === "Polpa" && (
+          <GeneralInput
+            placeholder="Digite o corante"
+            labelText="Corante"
+            forLabel="corante"
+            inputType="text"
+            value={corante}
+            onChange={setCorante}
+          />
+        )} */}
         
         <div className="flex flex-col gap-2">
           <TextAreaInput

@@ -84,7 +84,7 @@ export default function OfertaDetalhe() {
       const token = localStorage.getItem('token');
 
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/oferta/${id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL === undefined ? "https://api.polpanet.com" : ""}/api/oferta/${id}`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -118,7 +118,7 @@ export default function OfertaDetalhe() {
         Ordenacao: 'Recente',
       });
 
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/oferta/activedate?${params.toString()}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL === undefined ? "https://api.polpanet.com" : ""}/api/oferta/activedate?${params.toString()}`, {
         headers: {
           Authorization: `Bearer ${token}`,
           Accept: 'application/json',
@@ -169,7 +169,7 @@ export default function OfertaDetalhe() {
               <li className={`${oferta.acidoCitrico ? "text-azul-forelight" : "text-cinza"} bg-azul-lighter-forelight p-1 font-medium flex justify-between`}><p className='text-preto-forelight'>Ácido Cítrico:</p>{oferta.acidoCitrico ? 'Sim' : 'Não'}</li>
               <li className={`${oferta.benzoatoDeSodio ? "text-azul-forelight" : "text-cinza"} p-1 font-medium flex justify-between`}><p className='text-preto-forelight'>Benzoato de Sódio:</p>{oferta.benzoatoDeSodio ? 'Sim' : 'Não'}</li>
               <li className={`${oferta.sorbatoDePotassio ? "text-azul-forelight" : "text-cinza"} bg-azul-lighter-forelight p-1 font-medium flex justify-between`}><p className='text-preto-forelight'>Sorbato de Potássio:</p>{oferta.sorbatoDePotassio ? 'Sim' : 'Não'}</li>
-              <li className={`${oferta.corante === "" ? "text-azul-forelight" : "text-azul"} bg-azul-lighter-forelight p-1 font-medium flex justify-between`}><p className='text-preto-forelight'>Corante:</p>{oferta.corante === "" ? "Não" : oferta.corante}</li>
+              <li className={`${oferta.corante === "Sim" ? "text-azul-forelight" : "text-cinza"} bg-azul-lighter-forelight p-1 font-medium flex justify-between`}><p className='text-preto-forelight'>Corante:</p>{oferta.corante}</li>
               <li className={`text-azul bg-azul-lighter-forelight p-1 font-medium flex justify-between`}><p className='text-preto-forelight'>Embalagem:</p>{oferta.embalagem === 1 ? 'Tambor' : oferta.embalagem === 2 ? 'Balde' : oferta.embalagem === 3 ? 'Caixa' : oferta.embalagem === 4 ? 'Bag' : 'Outro' }</li>
             </ul>
           </div>

@@ -22,7 +22,7 @@ export default function Login() {
     setPasswordError(null);
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/login`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL === undefined ? "https://api.polpanet.com" : ""}/api/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
