@@ -166,7 +166,7 @@ const frutaOptions = Object.entries(frutaMap).map(([key, value]) => ({
 
   try {
     const token = localStorage.getItem("token") || "";
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL === undefined ? "https://api.polpanet.com" : ""}/api/oferta`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL === undefined ? "https://api.polpanet.com" : process.env.NEXT_PUBLIC_API_URL}/api/oferta`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

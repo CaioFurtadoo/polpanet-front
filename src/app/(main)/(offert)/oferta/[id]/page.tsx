@@ -84,7 +84,7 @@ export default function OfertaDetalhe() {
       const token = localStorage.getItem('token');
 
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL === undefined ? "https://api.polpanet.com" : ""}/api/oferta/${id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL === undefined ? "https://api.polpanet.com" : process.env.NEXT_PUBLIC_API_URL}/api/oferta/${id}`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -118,7 +118,7 @@ export default function OfertaDetalhe() {
         Ordenacao: 'Recente',
       });
 
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL === undefined ? "https://api.polpanet.com" : ""}/api/oferta/activedate?${params.toString()}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL === undefined ? "https://api.polpanet.com" : process.env.NEXT_PUBLIC_API_URL}/api/oferta/activedate?${params.toString()}`, {
         headers: {
           Authorization: `Bearer ${token}`,
           Accept: 'application/json',

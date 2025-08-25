@@ -67,7 +67,7 @@ export default function PerfilDetalhe() {
       if (!token || !userid) return;
 
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL === undefined ? "https://api.polpanet.com" : ""}/api/user/${userid}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL === undefined ? "https://api.polpanet.com" : process.env.NEXT_PUBLIC_API_URL}/api/user/${userid}`, {
           headers: {
             Authorization: `Bearer ${token}`,
             Accept: 'application/json',

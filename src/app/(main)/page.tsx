@@ -76,7 +76,7 @@ const fetchOfertas = async () => {
 
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL === undefined ? "https://api.polpanet.com" : ""}/api/oferta/activedate?${queryParams.toString()}`,
+      `${process.env.NEXT_PUBLIC_API_URL === undefined ? "https://api.polpanet.com" : process.env.NEXT_PUBLIC_API_URL}/api/oferta/activedate?${queryParams.toString()}`,
       {
         method: "GET",
         headers: {

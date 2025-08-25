@@ -53,7 +53,7 @@ export default function Register() {
     };
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL === undefined ? "https://api.polpanet.com" : ""}/api/user`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL === undefined ? "https://api.polpanet.com" : process.env.NEXT_PUBLIC_API_URL}/api/user`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
